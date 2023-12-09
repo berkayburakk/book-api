@@ -1,13 +1,11 @@
 # A book API in Golang Using Gin Framework
- 
- 
-Need to mirage db?
-Change env.properties file and add connection string to it.
-After
-go run migrate/migrate.go 
+
+Migrate DB
+- Firstly, you need to change .env file for database connection
+- Run **'go run migrate/migrate.go'** command
  
 For run swagger if not exist:
-swag init --parseDependency --parseInternal
+- Run **swag init --parseDependency --parseInternal** command
  
 For hot reload 
-CompileDaemon -command="./product-api" 
+- CompileDaemon -command="./book-api" 
