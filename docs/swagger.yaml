@@ -1,0 +1,113 @@
+basePath: /
+definitions:
+  models.Book:
+    properties:
+      author:
+        type: string
+      barcode:
+        type: string
+      bookName:
+        type: string
+      category:
+        type: string
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  description: A book service API in Go Using Gin Framework
+  title: Book Service API
+  version: "1.0"
+paths:
+  /books:
+    get:
+      description: Get all books from database
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Book'
+            type: array
+      summary: Get all books
+    post:
+      consumes:
+      - application/json
+      description: Save book data in db.
+      parameters:
+      - description: Book Create Data
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/models.Book'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Book'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create Book
+  /books/{id}:
+    delete:
+      description: Delete a book from database by ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      summary: Delete a book by ID
+    get:
+      description: Get a book from database by ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Get a book by ID
+    put:
+      consumes:
+      - application/json
+      description: Update a book in database by ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Book Update Data
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/models.Book'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Update a book by ID
+swagger: "2.0"
